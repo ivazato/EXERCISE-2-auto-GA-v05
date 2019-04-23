@@ -14,6 +14,7 @@ import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 public abstract class BasePage {
     protected WebDriver webDriver;
     protected WebDriverWait webDriverWait;
+    protected ManageDriver driverManager;
 
     /**
      * This method is the constructor class.
@@ -21,6 +22,7 @@ public abstract class BasePage {
     public BasePage() {
         webDriver = ManageDriver.getInstance().getWebDriver();
         webDriverWait = ManageDriver.getInstance().getWebDriverWait();
+        driverManager = ManageDriver.getInstance();
         PageFactory.initElements(webDriver, this);
     }
 }

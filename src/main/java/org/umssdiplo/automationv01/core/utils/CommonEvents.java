@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
@@ -33,6 +34,16 @@ public class CommonEvents {
         webElement.click();
     }
 
+    public static void hoverElement(WebElement webElement) throws InterruptedException {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+
+        Thread.sleep(5000);
+        Actions actions = new Actions(ManageDriver.getInstance().getWebDriver());
+
+        Actions hoverOverRegistrar = actions.moveToElement(webElement, 0, 0);
+        hoverOverRegistrar.build().perform();
+    }
+
     /**
      * This method perform a click in a non visible element in the UI.
      *
@@ -42,7 +53,12 @@ public class CommonEvents {
         ((JavascriptExecutor) ManageDriver.getInstance().getWebDriver())
                 .executeScript("arguments[0].click();", webElement);
     }
-
+/*
+    public static void jsHoverElement(WebElement webElement) {
+        ((JavascriptExecutor) ManageDriver.getInstance().getWebDriver())
+                .executeScript("arguments[0].onmouseover()", webElement);
+    }
+*/
     /**
      * This method verifies if a web element is visible.
      *
